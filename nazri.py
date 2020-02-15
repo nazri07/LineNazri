@@ -41,7 +41,7 @@ def cTime_to_datetime(unixtime):
     return datetime.fromtimestamp(str(timeNow))
 def dt_to_str(dt):
     return dt.strftime('%H:%M:%S')
-def allowLiff(self):
+def allowLiff():
     url = 'https://access.line.me/dialog/api/permissions'
     data = {
         'on': [
@@ -51,8 +51,8 @@ def allowLiff(self):
         'off': []
     }
     headers = {
-        'X-Line-Access': self.authToken,
-        'X-Line-Application': self.server.APP_NAME,
+        'X-Line-Access': client.authToken,
+        'X-Line-Application': client.server.APP_NAME,
         'X-Line-ChannelId': '1602687308',
         'Content-Type': 'application/json'
     }
