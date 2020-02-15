@@ -53,7 +53,7 @@ def allowLiff(self):
     headers = {
         'X-Line-Access': self.authToken,
         'X-Line-Application': self.server.APP_NAME,
-        'X-Line-ChannelId': '1603968955',
+        'X-Line-ChannelId': '1602687308',
         'Content-Type': 'application/json'
     }
     requests.post(url, json=data, headers=headers)
@@ -96,18 +96,6 @@ def sendTemplate(to, data):
     }
     data = {"messages":[data]}
     requests.post(url, headers=headers, data=json.dumps(data))
-def sendTemplate(to, data):
-    xyz = LiffChatContext(to)
-    xyzz = LiffContext(chat=xyz)
-    view = LiffViewRequest('1602687308-GXq4Vvk9', xyzz)
-    token = client.liff.issueLiffView(view)
-    url = 'https://api.line.me/message/v3/share'
-    headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer %s' % token.accessToken
-    }
-    data = {"messages":[data]}
-    requests.post(url, headers=headers, data=json.dumps(data))
 def command(text):
     pesan = text.lower()
     if settings["setKey"] == True:
@@ -128,6 +116,7 @@ def helpmessage():
                     "│ " + key + "Help" + "\n" + \
                     "│ " + key + "Mention" + "\n" + \
                     "│ " + key + "Restartbot" + "\n" + \
+                    "│ " + key + "Allowliff" + "\n" + \
                     "├─「Maker」─" + "\n" + \
                     "│ • VERSION : HelloWorld" + "\n" + \
                     "╰────────────"
