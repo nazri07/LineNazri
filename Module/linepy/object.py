@@ -42,20 +42,16 @@ class Object(object):
         return True
         
     @loggedIn
-    def updateProfileVideoPicture(self, path):
+    def updateProfileVideoPicture(self, path, path2):
         try:
-            from ffmpy import FFmpeg
             files = {'file': open(path, 'rb')}
             data = {'params': self.genOBSParams({'oid': self.profile.mid,'ver': '2.0','type': 'video','cat': 'vp.mp4'})}
             r_vp = self.server.postContent(self.server.LINE_OBS_DOMAIN + '/talk/vp/upload.nhn', data=data, files=files)
             if r_vp.status_code != 201:
                 raise Exception('Update profile video picture failure.')
-            path_p = self.genTempFile('path')
-            ff = FFmpeg(inputs={'%s' % path: None}, outputs={'%s' % path_p: ['-ss', '00:00:2', '-vframes', '1']})
-            ff.run()
-            self.updateProfilePicture(path_p, 'vp')
-        except:
-            raise Exception('You should install FFmpeg and ffmpy from pypi')
+            self.updateProfilePicture(path2,'vp')
+        except Exception as e:
+            print(str(e))
 
     @loggedIn
     def updateProfileCover(self, path, returnAs='bool'):
