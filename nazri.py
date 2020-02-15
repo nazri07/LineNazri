@@ -193,7 +193,7 @@ def clientBot(op):
                             client.sendMessage(to,'Send Video To Be Profile')
                             settings['ChangeVideoProfile']=True
                         elif cmd == 'allowliff':
-                            allowliff()
+                            allowLiff()
                             client.sendMessage("Success")
                         elif cmd == 'restartbot':
                             restartBot()
