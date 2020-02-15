@@ -291,10 +291,10 @@ def clientBot(op):
                                 ret_ += "\n「 Total {} Tag 」".format(str(len(dataMid)))
                                 sendMention(to, ret_, dataMid)
             except Exception as error:
-                client.sendMessage(to, "" + str(error)) 
+                client.sendMessage(to, "{}" + str(error)) 
                 traceback.print_tb(error.__traceback__)
     except Exception as error:
-        client.sendMessage(to, "" + str(error)) 
+        client.sendMessage(to, "{}" + str(error)) 
         traceback.print_tb(error.__traceback__)
         
 while True:
