@@ -13,7 +13,7 @@ import time, random, sys, json, codecs, threading, glob, re, string, os, request
 #client = LINE() <<Login Link
 client = LINE("email","password") #<<<login email
 #appName = "DESKTOPWIN 5.20.2"
-#client = LINE("token",appName=appName)<<Loguin with token
+#client = LINE("token",appName=appName)<<Login with token
 client.log("YOUR TOKEN : {}".format(str(client.authToken)))
 channel = Channel(client,client.server.CHANNEL_ID['LINE_TIMELINE'])
 client.log("CHANNEL TOKEN : " + str(channel.getChannelResult()))
@@ -217,69 +217,65 @@ def clientBot(op):
                             else:
                                 client.sendAudioWithURL(to,data["mp3"])
                         elif cmd.startswith("youtube"):
-                                try:
-                                    sep = msg.text.split(" ")
-                                    kudanil = text.replace(sep[0] + " ","")
-                                    r = requests.get("https://mnazria.herokuapp.com/api/ytdl?url={}".format(kudanil))
-                                    data = r.text
-                                    data = json.loads(data)
-                                    ret = "Judul :\n{}\n".format(data["desc"])
-                                    ret += "Deskripsi :\n{}\n".format(data["description_video"])
-                                    ret += "Size Audio :{}\n".format(data["size_audio"])
-                                    ret += "Size Video :{}\n".format(data["size_video"])
-                                    ret += "Url Audio Download:\n{}\n".format(data["url_audio"])
-                                    ret += "Url Video Download:\n{}\n".format(data["url_video"])
-                                    client.sendMessage(to, str(ret))
-                                except Exception as error:
-                                    client.sendMessage(to,"Status: 404\nReason: Link Youtube {} tidak ditemukan\nExample: https://youtube.be/bla2".format(error))
-                        elif cmd.startswith("stickergif"):
                               try:
-                                  sep = msg.text.split("/")
-                                  nom = sep[1].replace(" ","")
-                                  arr = "line://ti/p/~{}".format(client.getProfile().userid)                                                                
-                                  data = {                                                                                                                    
-                                        "type": "template",
-                                        "altText": "Mengirim Sticker",
-                                        "template": {
-                                            "type": "image_carousel",                                                                                               
-                                            "columns": [
-                                                {
-                                                  "imageUrl": "https://stickershop.line-scdn.net/stickershop/v1/sticker/{}/IOS/sticker_animation@2x.png".format(nom),
-                                                  "action": {                                                                                                               
-                                                  "type": "uri",
-                                                  " ": " ",
-                                                  "uri": "https://line.me/ti/p/~cringelo"
-                                                  }
-                                                }
-                                            ]
-                                        }
-                                  }
-                                  sendTemplate(to,data)
+                                  sep = msg.text.split(" ")
+                                  kudanil = text.replace(sep[0] + " ","")
+                                  r = requests.get("https://mnazria.herokuapp.com/api/ytdl?url={}".format(kudanil))
+                                  data = r.text
+                                  data = json.loads(data)
+                                  ret = "Judul :\n{}\n".format(data["desc"])
+                                  ret += "Deskripsi :\n{}\n".format(data["description_video"])
+                                  ret += "Size Audio :{}\n".format(data["size_audio"])
+                                  ret += "Size Video :{}\n".format(data["size_video"])
+                                  ret += "Url Audio Download:\n{}\n".format(data["url_audio"])
+                                  ret += "Url Video Download:\n{}\n".format(data["url_video"])
+                                  client.sendMessage(to, str(ret))
                               except Exception as error:
-                                  client.sendMessage(msg.to, "error\n" + str(error))
-                            elif cmd.startswith("stickerpng"):
-                              try:
-                                  sep = msg.text.split("/")
-                                  nom = sep[1].replace(" ","")
-                                  arr = "line://ti/p/~{}".format(client.getProfile().userid)                                                                
-                                  data = {                                                                                                                    
-                                        "type": "template",
-                                        "altText": "Mengirim Sticker",
-                                        "template": {
-                                            "type": "image_carousel",                                                                                               
-                                            "columns": [
-                                                {
-                                                  "imageUrl": "https://stickershop.line-scdn.net/stickershop/v1/sticker/{}/ANDROID/sticker.png".format(nom),
-                                                  "action": {                                                                                                               
-                                                  "type": "uri",
-                                                  " ": " ",
-                                                  "uri": "https://line.me/ti/p/~cringelo"
-                                                  }
-                                                }
-                                            ]
+                                  client.sendMessage(to,"Status: 404\nReason: Link Youtube {} tidak ditemukan\nExample: https://youtube.be/bla2".format(error))
+                        elif cmd.startswith("stickergif"):
+                            sep = msg.text.split("/")
+                            nom = sep[1].replace(" ","")
+                            arr = "line://ti/p/~{}".format(client.getProfile().userid)                                                                
+                            data = {                                                                                                                    
+                                "type": "template",
+                                "altText": "Mengirim Sticker",
+                                "template": {
+                                    "type": "image_carousel",                                                                                               
+                                    "columns": [
+                                        {
+                                         "imageUrl": "https://stickershop.line-scdn.net/stickershop/v1/sticker/{}/IOS/sticker_animation@2x.png".format(nom),
+                                         "action": {                                                                                                               
+                                         "type": "uri",
+                                         " ": " ",
+                                         "uri": "https://line.me/ti/p/~cringelo"
+                                         }
                                         }
-                                  }
-                                  sendTemplate(to,data)
+                                    ]
+                                }
+                            }
+                            sendTemplate(to,data)
+                        elif cmd.startswith("stickerpng"):
+                            sep = msg.text.split("/")
+                            nom = sep[1].replace(" ","")
+                            arr = "line://ti/p/~{}".format(client.getProfile().userid)                                                                
+                            data = {                                                                                                                    
+                                "type": "template",
+                                "altText": "Mengirim Sticker",
+                                "template": {
+                                    "type": "image_carousel",                                                                                               
+                                    "columns": [
+                                        {
+                                          "imageUrl": "https://stickershop.line-scdn.net/stickershop/v1/sticker/{}/ANDROID/sticker.png".format(nom),
+                                          "action": {                                                                                                               
+                                          "type": "uri",
+                                          " ": " ",
+                                          "uri": "https://line.me/ti/p/~cringelo"
+                                          }
+                                        }
+                                    ]
+                                }
+                            }
+                            sendTemplate(to,data)
                         elif cmd == 'mention':
                             group = client.getGroup(to)
                             midMembers = [contact.mid for contact in group.members]
