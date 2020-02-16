@@ -194,7 +194,7 @@ def clientBot(op):
                             settings['ChangeVideoProfile']=True
                         elif cmd == 'allowliff':
                             allowLiff()
-                            client.sendMessage("Success")
+                            client.sendMessage(to,"Success")
                         elif cmd == 'restartbot':
                             restartBot()
                         elif cmd.startswith("joox"):
@@ -291,10 +291,10 @@ def clientBot(op):
                                 ret_ += "\n「 Total {} Tag 」".format(str(len(dataMid)))
                                 sendMention(to, ret_, dataMid)
             except Exception as error:
-                client.sendMessage(to, "{}" + str(error)) 
+                client.sendMessage(to, "{}".format(str(error))) 
                 traceback.print_tb(error.__traceback__)
     except Exception as error:
-        client.sendMessage(to, "{}" + str(error)) 
+        client.sendMessage(to, "{}".format(str(error))) 
         traceback.print_tb(error.__traceback__)
         
 while True:
